@@ -5,6 +5,7 @@ import requests
 import re
 import os
 import threading
+import concurrent.futures
 from bs4 import BeautifulSoup
 from colorama import init, Fore
 
@@ -133,13 +134,10 @@ def filter_working(proxies):
         else:
             print(Fore.RED + f"[-] DEAD: {p}")
 
-    threads = []
-    for p in proxies:
-        t = threading.Thread(target=tester, args=(p,))
-        t.start()
-        threads.append(t)
-    for t in threads:
-        t.join()
+    # Use ThreadPoolExecutor to limit threads and avoid crash
+    import concurrent.futures
+    with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+        executor.map(tester, proxies)
 
     return working
 
