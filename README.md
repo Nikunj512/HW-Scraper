@@ -2,6 +2,8 @@
 
 **HW Scraper** is a hacker-style proxy scraper CLI tool that:
 - Scrapes proxies from top free sources
+- Filters **all proxies**
+- Saves then to `all_scraped.txt`
 - Filters only **working proxies**
 - Saves them to `proxies.txt`
 - CLI installable as `hwscraper`
@@ -15,7 +17,7 @@
 ## 🔧 Installation
 
 ```bash
-git clone https://github.com/ItzNamanDev/hwscraper.git
+git clone https://github.com/ItzNamanDev/hw-scraper.git
 cd hwscraper
 pip install .
 ```
